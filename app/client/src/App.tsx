@@ -31,7 +31,7 @@ class SomeService {
     fetch("http://localhost:9000/users").then( res =>
         res.json()
     ).then(result => {
-            console.log(result);
+        console.log(result);
     }).catch(error => {
         console.log("ERROR");
         console.log(error.toString());
