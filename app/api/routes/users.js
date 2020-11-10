@@ -17,4 +17,13 @@ router.post("/register", bodyParser.json(), function (req, res) {
   res.send({body: 'OK'});
 });
 
+router.post("/login", bodyParser.json(), function (req, res) {
+  const user = req.body;
+  if (users.some(el => el.login === user.login)) {
+    res.send({body: 'OK'});
+  } else {
+    res.send({body:'Wrong login'});
+  }
+});
+
 module.exports = router;
