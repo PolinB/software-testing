@@ -7,14 +7,12 @@ let user = null
 
 router.get("/user", (req, res) => {
   console.log(user);
-  if (user) {
+  if (user !== null) {
     res.send( {
-      user: {
-        name: user.login
-      }
+      user: user
     })
   } else {
-    res.send(null)
+    res.send({user: null})
   }
 });
 
