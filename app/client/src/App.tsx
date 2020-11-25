@@ -11,17 +11,32 @@ import Navigation from './components/Navigation';
 import Login from './components/Login'
 
 const App = () => {
-    const [isLogin, setIsLogin] = useState(false);
+    const [user, setUser] = useState({user: null});
 
-    const loginFunc = () => setIsLogin(true)
-    const logoutFunc = () => setIsLogin(false)
+    const loginFunc = (userIn: any) => {setUser({user: userIn})}
+    const logoutFunc = () => {
+        fetch('http://localhost:9000/users/logout' , {
+            method: "GET",
+            headers: {
+                'Content-type': 'application/json'
+            },
+        }).catch(error => {
+            console.log("ERROR");
+            console.log(error.toString());
+        })
+        setUser({user: null})
+    }
+
+    const isLogin = () => {
+        return user.user !== null
+    }
 
     return (
         <BrowserRouter>
             <div>
-                <Navigation isLogin={isLogin} logoutFunc={logoutFunc}/>
+                <Navigation isLogin={isLogin()} logoutFunc={logoutFunc}/>
                 <Switch>
-                    <Route path="/" component={Home} exact/>
+                    <Route path="/" component={() => <Home user={user.user}/>} exact/>
                     <Route path="/register" component={Register}/>
                     <Route path="/login" component={() => <Login loginFunc={loginFunc}/>}/>
                     <Route component={Error}/>

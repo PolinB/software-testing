@@ -22,7 +22,7 @@ const Login = (props: any) => {
             res.json()
         ).then(result => {
             if (result.body === "OK") {
-                props.loginFunc();
+                props.loginFunc(result.user);
                 history.push("/");
             } else {
                 setErrors({"login": {
