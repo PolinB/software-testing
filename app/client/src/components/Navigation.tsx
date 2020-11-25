@@ -12,15 +12,6 @@ const logoutNav = (handler: any) => {
 }
 
 const Navigation = (props: any) => {
-    // let nav
-    // if (props.isLogin) {
-    //     console.log(props.isLogin)
-    //     nav = logoutNav(props.logoutFunc)
-    // } else {
-    //     nav = loginNav()
-    // }
-    console.log(props.isLogin)
-
     return (
         <div className="topnav">
             <NavLink className="navlink" to="/">Home</NavLink>
