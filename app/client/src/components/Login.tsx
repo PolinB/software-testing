@@ -7,6 +7,23 @@ interface IFormInput {
     login: string;
 }
 
+const loginForm = (action: any, errorss: any, register: any, errors: any) => {
+    return <div className="register-form">
+        <form onSubmit={action}>
+            <div className="enterRow">
+                <label>Login</label>
+                <input name="login" type="text" placeholder="Example" id="login"
+                       ref={register({ required: true})} />
+                {errors.login && errors.login.type === "required"
+                && <div className="error" role="alert">This is required</div>}
+                {errorss.login && errorss.login.type === "outErr"
+                && <div className="error" role="alert">{errorss.login.message}</div>}
+            </div>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+}
+
 const Login = (props: any) => {
     const { register, errors, handleSubmit } = useForm<IFormInput>();
     const [errorss, setErrors] = useState(errors);
@@ -36,20 +53,7 @@ const Login = (props: any) => {
         })
     }
     return (
-        <div className="register-form">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="enterRow">
-                    <label>Login</label>
-                    <input name="login" type="text" placeholder="Example" id="login"
-                           ref={register({ required: true})} />
-                    {errors.login && errors.login.type === "required"
-                    && <div className="error" role="alert">This is required</div>}
-                    {errorss.login && errorss.login.type === "outErr"
-                    && <div className="error" role="alert">{errorss.login.message}</div>}
-                </div>
-                <input type="submit" value="Submit"/>
-            </form>
-        </div>
+        loginForm(handleSubmit(onSubmit), errorss, register, errors)
     );
 }
 

@@ -1,11 +1,24 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import Home from "./components/Home";
+import Home, {welcome} from "./components/Home";
 import {BrowserRouter, NavLink} from "react-router-dom";
 import Navigation from "./components/Navigation";
 
 const TestRenderer = require('react-test-renderer');
+
+describe('simple unit test', () => {
+  it('welcome without user', () => {
+    expect(welcome(null)).toBe("Welcome to CrazyCookBook")
+  })
+
+  it('welcome with user', () => {
+    const user = {
+      login: "Polina"
+    }
+    expect(welcome(user)).toBe("Welcome to CrazyCookBook, Polina")
+  })
+})
 
 describe('component test for home page', () => {
   it('render start phrase', () => {
@@ -27,7 +40,7 @@ describe('component test for home page', () => {
     };
     const testRender = TestRenderer.create(<Home user={user}/>);
     const testInstance = testRender.root;
-    expect(testInstance.findByType('p').props.children).toEqual(['Welcome to CrazyCookBook, ', user.login])
+    expect(testInstance.findByType('p').props.children).toEqual('Welcome to CrazyCookBook, Test')
   })
 })
 

@@ -1,13 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
-const Home = (props: any) => {
-    let welcome = (props.user !== null)
-        ? <p>Welcome to CrazyCookBook, {props.user.login}</p>
-        : <p>Welcome to CrazyCookBook</p>;
+export const welcome = (user: any) => {
+    if (user !== null) {
+        return `Welcome to CrazyCookBook, ${user.login}`
+    } else {
+        return "Welcome to CrazyCookBook"
+    }
+}
+
+export const Home = (props: any) => {
     return (
         <div>
             <h1>Home</h1>
-            {welcome}
+            <p>{welcome(props.user)}</p>
         </div>
     );
 }
