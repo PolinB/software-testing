@@ -1,29 +1,46 @@
-var express = require('express');
-var bodyParser = require('body-parser')
-var router = express.Router();
+let express = require('express');
+let bodyParser = require('body-parser')
+let router = express.Router();
 
 let users = []
+let user = null
+
+router.get("/user", (req, res) => {
+  console.log(user);
+  if (user !== null) {
+    res.send( {
+      user: user
+    })
+  } else {
+    res.send({user: null})
+  }
+});
 
 router.post("/register", bodyParser.json(), function (req, res) {
-  const user = req.body;
-  if (users.some(el => el.login === user.login)) {
+  const userReg = req.body;
+  if (users.some(el => el.login === userReg.login)) {
     res.send({
       body: 'Login already used'
     });
     return;
   }
-  users.push(user);
+  users.push(userReg);
   console.log(users);
   res.send({body: 'OK'});
 });
 
 router.post("/login", bodyParser.json(), function (req, res) {
-  const user = req.body;
-  if (users.some(el => el.login === user.login)) {
-    res.send({body: 'OK'});
+  const userLog = req.body;
+  if (users.some(el => el.login === userLog.login)) {
+    user = userLog;
+    res.send({body: 'OK', user: user});
   } else {
     res.send({body:'Wrong login'});
   }
+});
+
+router.get("/logout", (req, res) => {
+  user = null;
 });
 
 module.exports = router;
