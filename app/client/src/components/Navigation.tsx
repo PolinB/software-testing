@@ -16,6 +16,8 @@ const Navigation = (props: any) => {
         <div className="topnav">
             <NavLink className="navlink" to="/">Home</NavLink>
             {!props.isLogin && <NavLink className="navlink" to="/register">Register</NavLink>}
+            {props.isLogin && <NavLink className="navlink" to="/recipes">Recipes</NavLink>}
+            {props.isLogin && <NavLink className="navlink" to="/add-recipes">Add recipe</NavLink>}
             {props.isLogin ? logoutNav(props.logoutFunc) : loginNav()}
         </div>
     );

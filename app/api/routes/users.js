@@ -1,12 +1,12 @@
+// import {user, setUser} from '../app';
 let express = require('express');
-let bodyParser = require('body-parser')
+let bodyParser = require('body-parser');
 let router = express.Router();
 
-let users = []
-let user = null
+let users = [];
+let user = null;
 
 router.get("/user", (req, res) => {
-  console.log(user);
   if (user !== null) {
     res.send( {
       user: user
@@ -25,7 +25,6 @@ router.post("/register", bodyParser.json(), function (req, res) {
     return;
   }
   users.push(userReg);
-  console.log(users);
   res.send({body: 'OK'});
 });
 

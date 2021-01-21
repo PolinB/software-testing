@@ -2,9 +2,9 @@ import React from 'react';
 
 export const welcome = (user: any) => {
     if (user !== null) {
-        return `Welcome to CrazyCookBook, ${user.login}`
+        return `Welcome to recipe book, ${user.login}`
     } else {
-        return "Welcome to CrazyCookBook"
+        return "Welcome to recipe book"
     }
 }
 
@@ -12,7 +12,7 @@ export const Home = (props: any) => {
     return (
         <div>
             <h1>Home</h1>
-            <p>{welcome(props.user)}</p>
+            <p style={{padding: 10}}>{welcome(props.user)}</p>
         </div>
     );
 }

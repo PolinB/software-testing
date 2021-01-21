@@ -7,6 +7,8 @@ import Register from './components/Register';
 import Error from './components/Error';
 import Navigation from './components/Navigation';
 import Login from './components/Login';
+import Recipes from "./components/Recipes";
+import AddRecipe from "./components/AddRecipe";
 
 const App = () => {
     const [user, setUser] = useState({user: null});
@@ -21,13 +23,14 @@ const App = () => {
         }).then(
             res => res.json()
         ).then(result =>{
-            console.log(result)
-            setUser(result)
+            console.log(result);
+            setUser(result);
+            setIsLoading(true);
         }
-        ).catch(_ =>
-            setUser({user: null})
-        );
-        setIsLoading(true);
+        ).catch(_ => {
+            setUser({user: null});
+            setIsLoading(true);
+        });
     }
 
     const loginFunc = (userIn: any) => {setUser({user: userIn})}
@@ -56,6 +59,8 @@ const App = () => {
                     <Route path="/" id="home" component={() => <Home user={user.user}/>} exact/>
                     <Route path="/register" id="register" component={Register}/>
                     <Route path="/login" id="login" component={() => <Login loginFunc={loginFunc}/>}/>
+                    <Route path="/recipes" id="recipes" component={() => <Recipes user={user.user}/>} exact/>
+                    <Route path="/add-recipes" id="add-recipes" component={() => <AddRecipe user={user.user}/>} exact/>
                     <Route component={Error}/>
                 </Switch>
             </div>

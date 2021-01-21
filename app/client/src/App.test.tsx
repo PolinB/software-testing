@@ -9,21 +9,21 @@ const TestRenderer = require('react-test-renderer');
 
 describe('simple unit test', () => {
   it('welcome without user', () => {
-    expect(welcome(null)).toBe("Welcome to CrazyCookBook")
+    expect(welcome(null)).toBe("Welcome to recipe book")
   })
 
   it('welcome with user', () => {
     const user = {
       login: "Polina"
     }
-    expect(welcome(user)).toBe("Welcome to CrazyCookBook, Polina")
+    expect(welcome(user)).toBe("Welcome to recipe book, Polina")
   })
 })
 
 describe('component test for home page', () => {
   it('render start phrase', () => {
     render(<App />);
-    const linkElements = screen.queryByText('Welcome to CrazyCookBook');
+    const linkElements = screen.queryByText('Welcome to recipe book');
     expect(linkElements).toBeInTheDocument();
   })
 
@@ -31,7 +31,7 @@ describe('component test for home page', () => {
     const user = null
     const testRender = TestRenderer.create(<Home user={user}/>);
     const testInstance = testRender.root;
-    expect(testInstance.findByType('p').props.children).toEqual('Welcome to CrazyCookBook')
+    expect(testInstance.findByType('p').props.children).toEqual('Welcome to recipe book')
   })
 
   it('render phrase with user', () => {
@@ -40,7 +40,7 @@ describe('component test for home page', () => {
     };
     const testRender = TestRenderer.create(<Home user={user}/>);
     const testInstance = testRender.root;
-    expect(testInstance.findByType('p').props.children).toEqual('Welcome to CrazyCookBook, Test')
+    expect(testInstance.findByType('p').props.children).toEqual('Welcome to recipe book, Test')
   })
 })
 
