@@ -23,7 +23,7 @@ const App = () => {
         }).then(
             res => res.json()
         ).then(result =>{
-            console.log(result);
+            // console.log(result);
             setUser(result);
             setIsLoading(true);
         }
@@ -40,11 +40,15 @@ const App = () => {
             headers: {
                 'Content-type': 'application/json'
             },
-        }).catch(error => {
+        }).then(
+            res => res.json()
+        ).then( _ =>
+            setUser({user: null})
+        ).catch(error => {
+            setUser({user: null});
             console.log("ERROR");
             console.log(error.toString());
         })
-        setUser({user: null})
     }
 
     const isLogin = () => {

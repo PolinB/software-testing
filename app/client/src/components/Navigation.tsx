@@ -4,11 +4,11 @@ import "./Navigation.css"
 import {NavLink} from 'react-router-dom';
 
 const loginNav = () => {
-    return <NavLink className="navlink" to='login'>Login</NavLink>
+    return <NavLink id="login-navlink" className="navlink" to='/login'>Login</NavLink>
 }
 
 const logoutNav = (handler: any) => {
-    return <NavLink className="navlink" to="/" onClick={handler}>Logout</NavLink>
+    return <NavLink id="logout-navlink" className="navlink" to="/" onClick={handler}>Logout</NavLink>
 }
 
 const Navigation = (props: any) => {

@@ -19,7 +19,7 @@ const loginForm = (action: any, errorss: any, register: any, errors: any) => {
                 {errorss.login && errorss.login.type === "outErr"
                 && <div className="error" role="alert">{errorss.login.message}</div>}
             </div>
-            <input type="submit" value="Submit"/>
+            <input id="login-submit" type="submit" value="Submit"/>
         </form>
     </div>
 }

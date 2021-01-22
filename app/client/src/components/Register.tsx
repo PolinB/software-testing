@@ -75,13 +75,13 @@ const Register = () => {
                 </div>
                 <div className="enterRow">
                     <label>Age</label>
-                    <input name="age" type="number" placeholder="42" step="1" ref={register({ min: 10, max: 120 })} />
+                    <input name="age" id="age" type="number" placeholder="42" step="1" ref={register({ min: 10, max: 120 })} />
                     {errors.age && errors.age.type === "min"
                     && <div className="error" role="alert">Min age is 10</div> }
                     {errors.age && errors.age.type === "max"
                     && <div className="error" role="alert">Max age is 120</div> }
                 </div>
-                <input type="submit" value="Submit"/>
+                <input id="register-submit" type="submit" value="Submit"/>
             </form>
         </div>
     );

@@ -40,6 +40,7 @@ router.post("/login", bodyParser.json(), function (req, res) {
 
 router.get("/logout", (req, res) => {
   user = null;
+  res.send({body: 'OK', user: user});
 });
 
 module.exports = router;

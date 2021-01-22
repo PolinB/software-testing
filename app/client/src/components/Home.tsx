@@ -12,7 +12,7 @@ export const Home = (props: any) => {
     return (
         <div>
             <h1>Home</h1>
-            <p style={{padding: 10}}>{welcome(props.user)}</p>
+            <p style={{padding: 10}} id='welcome'>{welcome(props.user)}</p>
         </div>
     );
 }
