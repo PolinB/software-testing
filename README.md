@@ -1,12 +1,18 @@
 # Recipe book
 
+Приложение, созданное в рамках пректа по тестированию, для сохранения рецептов ваших любимых вкусняшек.
+
+## Ссылки для проекта
+[CheckList](CheckList.md)  
+[Notes](https://polinb.github.io/software-testing/)
+
 ## Запуск клиента
 ```
 cd app/client
 npm start
 ```
 
-## Запуск сервера
+## Запуск сервера node.js
 ```
 cd app/api
 npm start
