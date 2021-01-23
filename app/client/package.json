@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
@@ -24,7 +23,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npm run test-jest && npm run test-playwright && npm run test-cypress",
+    "test-jest": "jest -- /test/component-test-jest.test /test/unit-test-jest.test",
+    "test-playwright": "jest -- /test/e2e-playwright.test",
     "test-cypress": "cypress run",
     "eject": "react-scripts eject",
     "cypress": "cypress open"
@@ -45,7 +46,36 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/register": "^7.12.10",
+    "@types/jest": "^24.9.1",
+    "babel-plugin-inline-react-svg": "^1.1.2",
+    "babel-preset-react-app-babel-7": "^4.0.2-0",
+    "chai": "^4.2.0",
+    "chai-enzyme": "^1.0.0-beta.1",
+    "cheerio": "^1.0.0-rc.5",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "ignore-styles": "^5.0.1",
     "jest-process-manager": "^0.2.9",
-    "playwright": "^1.8.0"
+    "jsdom": "^16.4.0",
+    "metro-react-native-babel-preset": "^0.64.0",
+    "mocha": "^8.2.1",
+    "playwright": "^1.8.0",
+    "react-native-mock-render": "^0.1.9",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1"
+  },
+  "mocha": {
+    "require": [
+      "ts-node/register"
+    ],
+    "recursive": true,
+    "extension": [
+      "ts",
+      "js",
+      "tsx"
+    ]
   }
 }
