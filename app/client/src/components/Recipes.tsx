@@ -36,7 +36,7 @@ export const Recipes = (props: any) => {
     return (
         <div>
             <h1>Recipes</h1>
-            <div>
+            <div id="all-recipes">
                 {isLoading && recipesToHtml(recipes)}
             </div>
         </div>
