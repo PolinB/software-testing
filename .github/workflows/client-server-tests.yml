@@ -41,7 +41,7 @@ jobs:
         run: |
           npm install
           npm start &
-          npm run test-playwright
+          npm run test-cypress
         env:
           CI: true
           API_URI: http://localhost:3000/
