@@ -43,7 +43,7 @@
 - [x] component тесты
 - [x] TestContainers для теста с DB
 - [x] Mockito
-- [ ] README про ненаписанные тесты
+- [x] README про ненаписанные тесты
 
 ### Advanced часть:
 - [x] взаимодействие сервиса и Frontend приложения
@@ -57,7 +57,7 @@
 
 ## CI/CD. GitHub actions. Azure
 ### Main часть:
-- [ ] GitHub action для запуска тестов на UI и Backend по пушу из master в ветку
+- [x] GitHub action для запуска тестов на UI и Backend по пушу из master в ветку
 
 ### Advanced часть:
 - [ ] GitHub action для деплоя приложения UI+BE на Azure/Vercel/Яндекс Облако

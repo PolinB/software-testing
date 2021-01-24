@@ -19,9 +19,6 @@ describe(`Playwright tests`, () => {
         if (!page) {
             throw new Error("Connection wasn't established");
         }
-
-        await page.goto(PAGE_URL);
-        await delay(100);
     });
 
     afterEach(async () => {
@@ -29,10 +26,11 @@ describe(`Playwright tests`, () => {
     });
 
     test(`Load start page`, async () => {
-        expect(page).not.toBeNull();
+        expect(await page.goto(PAGE_URL)).not.toBeNull();
     });
 
     test('Home page', async () => {
+        await page.goto(PAGE_URL);
         expect(await page.innerText('#welcome')).toBe('Welcome to recipe book');
     });
 
