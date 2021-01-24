@@ -40,7 +40,8 @@ jobs:
         working-directory: client
         run: |
           npm install
-          npm start &
+          npm start &&
+          npm run test-playwright &&
           npm run test-cypress
         env:
           CI: true
