@@ -39,10 +39,10 @@
 ### Main часть:
 - [x] сервис Java + Spring + DB
 - [x] больше 1 контроллерa
-- [ ] unit тесты
-- [ ] component тесты
-- [ ] TestContainers для теста с DB
-- [ ] Mockito
+- [x] unit тесты
+- [x] component тесты
+- [x] TestContainers для теста с DB
+- [x] Mockito
 - [ ] README про ненаписанные тесты
 
 ### Advanced часть:

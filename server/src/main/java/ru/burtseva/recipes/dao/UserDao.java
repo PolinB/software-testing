@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserDao {
     boolean addUser(User user);
-    List<User> getUser(String login);
+    List<User> getUsers(String login);
     boolean setUser(String login);
     String getUser();
 }

@@ -13,6 +13,9 @@ public class UserJdbcDao extends JdbcDaoSupport implements UserDao {
     public UserJdbcDao(DataSource dataSource) {
         super();
         setDataSource(dataSource);
+        String dropSql = "DROP TABLE IF EXISTS Users;";
+        getJdbcTemplate().execute(dropSql);
+        
         String initSqlUsers = "CREATE TABLE IF NOT EXISTS Users " +
                 "( " +
                 "firstName VARCHAR(50) not null, " +
@@ -20,12 +23,12 @@ public class UserJdbcDao extends JdbcDaoSupport implements UserDao {
                 "login VARCHAR(50) not null primary key, " +
                 "age INTEGER not null" +
                 ");";
-        getJdbcTemplate().update(initSqlUsers);
+        getJdbcTemplate().execute(initSqlUsers);
     }
 
     @Override
     public boolean addUser(User user) {
-        if (getUser(user.getLogin()).isEmpty()) {
+        if (getUsers(user.getLogin()).isEmpty()) {
             String sql = "INSERT INTO Users (firstName, secondName, login, age) VALUES " +
                     "('" + user.getFirstName() + "', " +
                     "'" + user.getSecondName() + "', " +
@@ -39,7 +42,7 @@ public class UserJdbcDao extends JdbcDaoSupport implements UserDao {
     }
 
     @Override
-    public List<User> getUser(String login) {
+    public List<User> getUsers(String login) {
         String sql = "SELECT * " +
                 "FROM Users " +
                 "WHERE Users.login = \"" + login + "\";";
@@ -48,7 +51,7 @@ public class UserJdbcDao extends JdbcDaoSupport implements UserDao {
 
     @Override
     public boolean setUser(String login) {
-        if (!getUser(login).isEmpty()) {
+        if (!getUsers(login).isEmpty()) {
             this.currentUser = login;
             return true;
         } else {

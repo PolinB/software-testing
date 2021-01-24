@@ -1,6 +1,9 @@
 package ru.burtseva.recipes.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.burtseva.recipes.dao.UserDao;
 import ru.burtseva.recipes.model.Login;
@@ -9,7 +12,7 @@ import ru.burtseva.recipes.model.User;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@Controller
 public class UserController {
     private final UserDao userDao;
 
@@ -18,37 +21,40 @@ public class UserController {
         this.userDao = userDao;
     }
 
+    ObjectMapper objectMapper = new ObjectMapper();
+
     @GetMapping(value = "/users/user")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Map<String, Map<String,String>> getUser() {
+    @ResponseBody
+    public String getUser() throws JsonProcessingException {
         HashMap<String, Map<String, String>> map = new HashMap<>();
         String login = userDao.getUser();
         if (login == null) {
             map.put("user", null);
-            return map;
         } else {
             map.put("user", new HashMap<>());
             map.get("user").put("login", login);
-            return map;
         }
+        return objectMapper.writeValueAsString(map);
     }
 
     @PostMapping(value = "/users/register")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Map<String, String> register(@RequestBody User user) {
+    @ResponseBody
+    public String register(@RequestBody User user) throws JsonProcessingException {
         HashMap<String, String> map = new HashMap<>();
         if (userDao.addUser(user)) {
             map.put("body", "OK");
-            return map;
         } else {
             map.put("body", "Login already used");
-            return map;
         }
+        return objectMapper.writeValueAsString(map);
     }
 
     @PostMapping(value = "/users/login")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Map<String, String> login(@RequestBody Login login) {
+    @ResponseBody
+    public String login(@RequestBody Login login) throws JsonProcessingException {
         HashMap<String, String> map = new HashMap<>();
         System.out.println(login);
         String loginVal = login.getLogin();
@@ -58,17 +64,18 @@ public class UserController {
         } else {
             map.put("body", "Wrong login");
         }
-        return map;
+        return objectMapper.writeValueAsString(map);
     }
 
     @GetMapping(value = "/users/logout")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Map<String, String> logout() {
+    @ResponseBody
+    public String logout() throws JsonProcessingException {
         userDao.setUser(null);
         HashMap<String, String> map = new HashMap<>();
         map.put("body", "OK");
         map.put("user", null);
-        return map;
+        return objectMapper.writeValueAsString(map);
     }
 
 }
