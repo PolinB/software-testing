@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static net.bytebuddy.matcher.ElementMatchers.is;
 import static org.mockito.Mockito.when;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -25,7 +26,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UserController.class)
 @AutoConfigureMockMvc
-@AutoConfigureRestDocs(outputDir = "target/snippets")
+@AutoConfigureRestDocs
+//@AutoConfigureRestDocs(outputDir = "target/generated-docs")
 public class MockTests {
     @Autowired
     private MockMvc mockMvc;
@@ -45,6 +47,7 @@ public class MockTests {
         map.get("user").put("login", login);
         mockMvc.perform(get(url))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.user.login").value(login));
+                .andExpect(jsonPath("$.user.login").value(login))
+                .andDo(document("login"));
     }
 }

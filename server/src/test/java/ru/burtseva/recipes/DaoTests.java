@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.testcontainers.containers.MySQLContainer;
-import ru.burtseva.recipes.dao.UserDao;
 import ru.burtseva.recipes.dao.UserJdbcDao;
 import ru.burtseva.recipes.model.User;
 import javax.sql.DataSource;
