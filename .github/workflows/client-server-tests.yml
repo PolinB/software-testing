@@ -41,7 +41,7 @@ jobs:
         run: |
           npm install
           npm start &
-          npm run test-jest
+          npm run test-playwright
         env:
           CI: true
           API_URI: http://localhost:3000/
