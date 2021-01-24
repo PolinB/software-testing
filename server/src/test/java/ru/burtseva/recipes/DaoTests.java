@@ -19,7 +19,6 @@ public class DaoTests {
 	public DataSource dataSource() {
 		MySQLContainer<?> mysql = new MySQLContainer<>("mysql:5.6.42");
 		mysql.start();
-		System.out.println(mysql.getJdbcUrl());
 		HikariConfig hikariConfig = new HikariConfig();
 		hikariConfig.setDriverClassName(mysql.getDriverClassName());
 		hikariConfig.setJdbcUrl(mysql.getJdbcUrl());
@@ -28,7 +27,7 @@ public class DaoTests {
 
 		return new HikariDataSource(hikariConfig);
 	}
-	private UserDao userDao = new UserJdbcDao(dataSource());
+	private final UserJdbcDao userDao = new UserJdbcDao(dataSource());
 
 
 	@Test
@@ -37,9 +36,11 @@ public class DaoTests {
 		String name = "test";
 		int age = 11;
 		User user = new User(name, name, login, age);
-		userDao.addUser(user);
-		List<User> result = userDao.getUsers(login);
 
+		boolean checkVal = userDao.addUser(user);
+		Assert.assertTrue(checkVal);
+
+		List<User> result = userDao.getUsers(login);
 		Assert.assertEquals(1, result.size());
 		Assert.assertEquals(name, result.get(0).getFirstName());
 	}
