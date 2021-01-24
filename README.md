@@ -1,4 +1,5 @@
-# Recipe book
+# Recipe book  
+![server-java-test](https://github.com/PolinB/software-testing/workflows/server-java-test/badge.svg)
 
 Приложение, созданное в рамках пректа по тестированию, для сохранения рецептов ваших любимых вкусняшек.
 
