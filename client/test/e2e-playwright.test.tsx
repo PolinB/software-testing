@@ -30,7 +30,6 @@ describe(`Playwright tests`, () => {
 
     test(`Load start page`, async () => {
         expect(page).not.toBeNull();
-        expect(await page.title()).not.toBeNull();
     });
 
     test('Home page', async () => {
