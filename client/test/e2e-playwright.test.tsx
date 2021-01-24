@@ -25,10 +25,6 @@ describe(`Playwright tests`, () => {
         await browser.close();
     });
 
-    test(`Load start page`, async () => {
-        expect(await page.goto(PAGE_URL)).not.toBeNull();
-    });
-
     test('Home page', async () => {
         await page.goto(PAGE_URL);
         expect(await page.innerText('#welcome')).toBe('Welcome to recipe book');
@@ -39,7 +35,15 @@ describe(`Playwright tests`, () => {
         expect(await page.innerText('#not-exist')).toBe('Error: Page does not exist!');
     });
 
-    // Можно запускать лишь 1 раз после поднятия
+    test('Wrong login', async () => {
+        let login = 'test';
+        await page.goto(PAGE_URL + '/login');
+        await page.fill('#login', login);
+        await page.click('#login-submit');
+        await delay(100);
+        expect(await page.innerText('.error')).toBe('Wrong login')
+    });
+
     test('Register user', async () => {
         let login = 'polinb';
         await page.goto(PAGE_URL + '/register');
@@ -54,7 +58,6 @@ describe(`Playwright tests`, () => {
         expect(await page.innerText('#welcome')).toBe('Welcome to recipe book');
     });
 
-    // Можно запускать лишь 1 раз после поднятия
     test('Login after register user', async () => {
         let login = 'pbs';
         await page.goto(PAGE_URL + '/register');
