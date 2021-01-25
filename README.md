@@ -1,5 +1,7 @@
 # Recipe book  
 ![server-java-test](https://github.com/PolinB/software-testing/workflows/server-java-test/badge.svg)
+![jest-client-tests](https://github.com/PolinB/software-testing/workflows/jest-client-tests/badge.svg)
+![client-server-tests](https://github.com/PolinB/software-testing/workflows/client-server-tests/badge.svg)
 
 Приложение, созданное в рамках пректа по тестированию, для сохранения рецептов ваших любимых вкусняшек.
 
