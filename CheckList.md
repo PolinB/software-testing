@@ -81,7 +81,7 @@
 
 ## Selenium. Selenide. Selenoid
 ### Main часть:
-- [ ] e2e тесты, используя Selenide
+- [x] e2e тесты, используя Selenide
 
 ### Advanced часть:
 - [ ] настроить запуск тестов с Selenoid
@@ -92,7 +92,7 @@
 
 ## Performance testing
 ### Main часть:
-- [ ] пройти воркшоп и выложить результаты
+- [ ] пройти воркшоп и выложить результаты (начало положено)
 
 ### Advanced часть:
 - [ ] настроить CI с Github actions
